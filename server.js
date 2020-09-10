@@ -9,27 +9,11 @@ const htmlRoutes = require('./routes/htmlRoutes')
 const app = express(); 
 let PORT = process.env.PORT || 8080;
 
-
-app.get('/', ( req , res ) => {
-    res.json('Returns Home Page')
-});
-
-app.get('/Page2', ( req , res ) => {
-    res.json('Returns Page 2')
-});
-
-app.get('/Page3', ( req , res ) => {
-    res.json('Returns Page 3')
-});
-
-app.get('/Page4', ( req , res ) => {
-    res.json('Returns Page 4')
-});
-
-// Returns Error Message
-app.get("*", (req, res) => {
-    res.json("Page Not Found");
-});
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.static('public'));
+app.use("/api", apiRoutes);
+app.use(htmlRoutes);
 
 //Required for express
 app.listen(PORT,() => {

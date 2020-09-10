@@ -24,7 +24,6 @@ router.delete("/notes/:id", (req, res) => {
         res.json(note);
     });
 
-    //console.log('DELETE Notes');
 });
 
 module.exports = router;
